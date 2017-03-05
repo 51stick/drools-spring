@@ -12,14 +12,15 @@
 
     <kie:kmodule id="message-kmodule">
         <kie:kbase name="message_kbase" packages="com.rules.message">
-            <kie:ksession name="message_ksession" scope="prototype"/>
+            <kie:ksession name="message_ksession" scope="Singleton"/>
         </kie:kbase>
     </kie:kmodule>
 
-    <!-- 	<context:component-scan base-package="com.myhexin"/>  -->
+    <!-- 如果是使用KModuleBeanFactoryPostProcessor，并且要使用注解的话，还得开启意思下的context扫描包 -->
+    <!--<context:component-scan base-package="org.kie.spring"/>
+    <bean id="kiePostProcessor" class="org.kie.spring.KModuleBeanFactoryPostProcessor" />-->
 
-     <!--<bean id="kiePostProcessor" class="org.kie.spring.KModuleBeanFactoryPostProcessor" />-->
+    <!-- 使用drools的注解形式获取，kession，kcontainer, 只需要使用KModuleAnnotationPostProcessor即可 -->
     <bean id="kiePostProcessor" class="org.kie.spring.annotations.KModuleAnnotationPostProcessor"/>
-
 
 </beans>

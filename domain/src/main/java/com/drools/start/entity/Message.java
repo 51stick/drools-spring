@@ -1,4 +1,4 @@
-package com.myhexin.entity;
+package com.drools.start.entity;
 
 /**
  * Created by Administrator on 2017/2/28 0028.

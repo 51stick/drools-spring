@@ -1,6 +1,7 @@
-package com.myhexin.web;
+package com.drools.start.controller;
 
-import com.myhexin.service.IMessageService;
+import com.drools.start.entity.Message;
+import com.drools.start.service.IMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,15 +15,18 @@ public class MessageController {
     private IMessageService messageService;
 
     /**
-     * 购买一本书
+     * 处理消息
      *
      * @return
      */
-    @RequestMapping(value = "/send")
+    @RequestMapping(value = "/handle")
     @ResponseBody
-    public void orderOneBook() {
-        System.out.println("=======MessageController=============");
+    public Message handleMessage() {
 
-        messageService.sendMsg();
+        Message message = new Message();
+        message.setStatus(Message.HELLO);
+        message.setMessage("This is a init message");
+
+        return messageService.handleMessage(message);
     }
 }

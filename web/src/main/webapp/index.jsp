@@ -7,11 +7,11 @@
 <title>Drools Test Page</title>
 </head>
 <body>
-  
-   <form id="testFrm" name="testFrm" action="test!test.action">
-      <textarea name="ruleParam" rows="6" cols="100"></textarea>
-      <input type="button" name="test drools" onclick="submit();return fales;" value="Test Drools">
-      
+   <h1>Welcome to drools-spring home page</h1>
+
+   <form action="/message/handle">
+      <input type="submit" value="点我测试">
    </form>
+
 </body>
 </html>
