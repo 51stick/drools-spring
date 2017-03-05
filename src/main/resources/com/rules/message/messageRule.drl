@@ -1,0 +1,15 @@
+//package com.rules.message
+package com.rules.message
+
+import com.myhexin.entity.Message;
+
+rule "hello-rule"
+    salience 1
+    lock-on-active
+    when
+        $messageFact : Message($status : status == Message.HELLO, $newMessage : message);
+    then
+        System.out.println("message in rule => " + $newMessage);
+end
+
+
