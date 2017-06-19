@@ -2,19 +2,33 @@ package com.rules.message    // 规则文件所在包名
 
 import com.drools.start.entity.Message;
 
-rule "hello-rule"
+rule "rule-001"
     salience 1               // 优先级，值越大，代表规则执行的优先级越高
     lock-on-active           // 本规则在触发规则时，当前规则不重复执行
     when
         $messageFact : Message(status == Message.HELLO, $newMessage : message);
     then
-        System.out.println("Rule notice : origin message=" + $messageFact.getMessage() + ", status=" + $messageFact.getStatus());
+        System.out.println("Rule notice for rule 001: origin message=" + $messageFact.getMessage() + ", status=" + $messageFact.getStatus());
 
-        $messageFact.setMessage("This is new message");
+        $messageFact.setMessage("This is new message for rule 001");
         $messageFact.setStatus(Message.GOODBYE);
 
-        System.out.println("Rule notice : new    message=" + $messageFact.getMessage() + ", status=" + $messageFact.getStatus());
+        System.out.println("Rule notice for rule 001 : new    message=" + $messageFact.getMessage() + ", status=" + $messageFact.getStatus());
 //        update($messageFact)
 end
 
+rule "rule-002"
+    salience 1               // 优先级，值越大，代表规则执行的优先级越高
+    lock-on-active           // 本规则在触发规则时，当前规则不重复执行
+    when
+        $messageFact : Message(status == Message.HELLO, $newMessage : message);
+    then
+        System.out.println("Rule notice for rule 002: origin message=" + $messageFact.getMessage() + ", status=" + $messageFact.getStatus());
+
+        $messageFact.setMessage("This is new message for rule-002");
+        $messageFact.setStatus(Message.GOODBYE);
+
+        System.out.println("Rule notice for rule 002: new    message=" + $messageFact.getMessage() + ", status=" + $messageFact.getStatus());
+//        update($messageFact)
+end
 

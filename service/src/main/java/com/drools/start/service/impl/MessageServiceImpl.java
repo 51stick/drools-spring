@@ -16,6 +16,9 @@ public class MessageServiceImpl implements IMessageService {
     @KSession("message_ksession")
     private KieSession ksession;
 
+//    @KSession("message_ksession2")
+//    private KieSession ksession2;
+
 //    // 方法二
 //    @KContainer
     private KieContainer kContainer;
@@ -30,6 +33,12 @@ public class MessageServiceImpl implements IMessageService {
 
         ksession.insert(message);
         ksession.fireAllRules();
+
+//        ksession2.addEventListener(new DebugAgendaEventListener());
+//        ksession2.addEventListener(new DebugRuleRuntimeEventListener());
+//
+//        ksession2.insert(message);
+//        ksession2.fireAllRules();
 
         return message;
     }

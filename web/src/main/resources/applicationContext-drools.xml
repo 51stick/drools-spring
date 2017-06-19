@@ -11,8 +11,11 @@
         http://drools.org/schema/kie-spring.xsd">
 
     <kie:kmodule id="message-kmodule">
-        <kie:kbase name="message_kbase" packages="com.rules.message">
+        <kie:kbase name="message_kbase" includes="message_kbase2" packages="com.rules.message">
             <kie:ksession name="message_ksession" scope="Singleton"/>
+        </kie:kbase>
+        <kie:kbase name="message_kbase2" packages="com.rules.message2">
+            <kie:ksession name="message_ksession2" scope="Singleton"/>
         </kie:kbase>
     </kie:kmodule>
 

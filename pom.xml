@@ -105,8 +105,6 @@
             <artifactId>knowledge-api</artifactId>
             <version>${runtime.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.drools/knowledge-api -->
-
 
         <dependency>
             <groupId>org.jbpm</groupId>
