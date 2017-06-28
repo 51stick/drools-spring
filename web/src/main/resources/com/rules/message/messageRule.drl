@@ -18,7 +18,7 @@ rule "rule-001"
 end
 
 rule "rule-002"
-    salience 1               // 优先级，值越大，代表规则执行的优先级越高
+    salience 4               // 优先级，值越大，代表规则执行的优先级越高
     lock-on-active           // 本规则在触发规则时，当前规则不重复执行
     when
         $messageFact : Message(status == Message.HELLO, $newMessage : message);

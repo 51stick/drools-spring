@@ -11,6 +11,9 @@
         http://drools.org/schema/kie-spring.xsd">
 
     <kie:kmodule id="message-kmodule">
+        <!-- 1. 如果不指定packages属性的值,则缺省状态下会加载resources文件夹下所有的.drl文件进行编译 -->
+        <!-- 2. 如果要加载编译多个文件夹下的.drl文件，包名可以用都到分隔 -->
+        <!-- 3. 可以以使用 kbase的includes属性，用于将当前kmodule中的其他KieBases包含到当前的KieBase中 -->
         <kie:kbase name="message_kbase" includes="message_kbase2" packages="com.rules.message">
             <kie:ksession name="message_ksession" scope="Singleton"/>
         </kie:kbase>

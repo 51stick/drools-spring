@@ -2,6 +2,7 @@ package com.drools.start.service;
 
 
 import com.drools.start.entity.Message;
+import com.drools.start.service.impl.TestException;
 
 public interface IMessageService {
 
@@ -11,6 +12,6 @@ public interface IMessageService {
      * @param message
      * @return
      */
-    Message handleMessage(Message message);
+    Message handleMessage(Message message) throws TestException;
 
 }
