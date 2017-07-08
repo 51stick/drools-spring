@@ -19,7 +19,7 @@
 
     <properties>
         <drools-spring.version>1.0-SNAPSHOT</drools-spring.version>
-        <runtime.version>6.4.0.Final</runtime.version>
+        <runtime.version>6.5.0.Final</runtime.version>
         <spring.version>4.3.2.RELEASE</spring.version>
     </properties>
 
