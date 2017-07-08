@@ -6,7 +6,7 @@
     <artifactId>drools-demo</artifactId>
     <packaging>pom</packaging>
     <name>drools-spring</name>
-    
+
     <version>${drools-spring.version}</version>
 
     <modules>
