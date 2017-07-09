@@ -9,8 +9,8 @@
 <body>
    <h1>Welcome to drools-spring home page</h1>
 
-   <form action="/message/handle">
-      <input type="submit" value="点我测试">
+   <form action="/book/price">
+      <input type="submit" value="图书价格测试">
    </form>
 
 </body>

@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:kie="http://drools.org/schema/kie-spring"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd
         http://drools.org/schema/kie-spring
         http://drools.org/schema/kie-spring.xsd">
 
-    <kie:kmodule id="message-kmodule">
-        <!-- 1. 如果不指定packages属性的值,则缺省状态下会加载resources文件夹下所有的.drl文件进行编译 -->
-        <!-- 2. 如果要加载编译多个文件夹下的.drl文件，包名可以用都到分隔 -->
-        <!-- 3. 可以以使用 kbase的includes属性，用于将当前kmodule中的其他KieBases包含到当前的KieBase中 -->
-        <kie:kbase name="message_kbase" includes="message_kbase2" packages="com.rules.message">
-            <kie:ksession name="message_ksession" scope="Singleton"/>
-        </kie:kbase>
-        <kie:kbase name="message_kbase2" packages="com.rules.message2">
-            <kie:ksession name="message_ksession2" scope="Singleton"/>
+    <!--<kie:kmodule id="message-kmodule">-->
+        <!--&lt;!&ndash; 1. 如果不指定packages属性的值,则缺省状态下会加载resources文件夹下所有的.drl文件进行编译 &ndash;&gt;-->
+        <!--&lt;!&ndash; 2. 如果要加载编译多个文件夹下的.drl文件，包名可以用都到分隔 &ndash;&gt;-->
+        <!--&lt;!&ndash; 3. 可以以使用 kbase的includes属性，用于将当前kmodule中的其他KieBases包含到当前的KieBase中 &ndash;&gt;-->
+        <!--<kie:kbase name="message_kbase" includes="message_kbase2" packages="com.rules.message">-->
+            <!--<kie:ksession name="message_ksession" scope="Singleton"/>-->
+        <!--</kie:kbase>-->
+        <!--<kie:kbase name="message_kbase2" packages="com.rules.message2">-->
+            <!--<kie:ksession name="message_ksession2" scope="Singleton"/>-->
+        <!--</kie:kbase>-->
+    <!--</kie:kmodule>-->
+
+    <kie:kmodule id="book-module">
+        <kie:kbase name="book_kbase" packages="com.rules.book">
+            <kie:ksession name="book_price_ksession" scope="Singleton" />
         </kie:kbase>
     </kie:kmodule>
 
