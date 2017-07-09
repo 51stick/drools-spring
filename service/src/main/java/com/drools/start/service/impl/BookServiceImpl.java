@@ -15,8 +15,8 @@ public class BookServiceImpl implements BookService {
     private KieSession ksession;
 
     public double getBookSalePrice(Book book) {
-        ksession.addEventListener(new DebugAgendaEventListener());
-        ksession.addEventListener(new DebugRuleRuntimeEventListener());
+//        ksession.addEventListener(new DebugAgendaEventListener());
+//        ksession.addEventListener(new DebugRuleRuntimeEventListener());
 
         if (book == null) {
             throw new NullPointerException("Book can not be null.");

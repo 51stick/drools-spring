@@ -2,10 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:kie="http://drools.org/schema/kie-spring"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://drools.org/schema/kie-spring
-        http://drools.org/schema/kie-spring.xsd">
+        http://drools.org/schema/kie-spring.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--<kie:kmodule id="message-kmodule">-->
         <!--&lt;!&ndash; 1. 如果不指定packages属性的值,则缺省状态下会加载resources文件夹下所有的.drl文件进行编译 &ndash;&gt;-->
@@ -19,17 +22,49 @@
         <!--</kie:kbase>-->
     <!--</kie:kmodule>-->
 
+    <!--Drools supports adding 3 types of listeners to KieSessions - AgendaListener, WorkingMemoryListener, ProcessEventListener-->
+    <bean id="debugAgendaEventListener" class="org.kie.api.event.rule.DebugAgendaEventListener"/>
+    <bean id="debugRuleRuntimeEventListener" class="org.kie.api.event.rule.DebugRuleRuntimeEventListener"/>
+    <bean id="defaultProcessEventListener" class="org.kie.api.event.process.DefaultProcessEventListener"/>
+
     <kie:kmodule id="book-module">
         <kie:kbase name="book_kbase" packages="com.rules.book">
-            <kie:ksession name="book_price_ksession" scope="Singleton" />
+            <kie:ksession name="book_price_ksession" scope="Singleton">
+                <!-- 在事件监听器没有指定实现bean的使用，默认底层使用的debug的EventLister-->
+                <kie:agendaEventListener />
+                <kie:processEventListener />
+                <kie:ruleRuntimeEventListener />
+
+                <!-- 此处使用默认的和debug的事件监听，和上面的效果是一样的 -->
+                <!--<kie:agendaEventListener ref="debugAgendaEventListener"/>
+                <kie:ruleRuntimeEventListener ref="debugRuleRuntimeEventListener"/>
+                <kie:processEventListener ref="defaultProcessEventListener"/>-->
+            </kie:ksession>
         </kie:kbase>
     </kie:kmodule>
 
     <!-- 如果是使用KModuleBeanFactoryPostProcessor，并且要使用注解的话，还得开启意思下的context扫描包 -->
-    <!--<context:component-scan base-package="org.kie.spring"/>
-    <bean id="kiePostProcessor" class="org.kie.spring.KModuleBeanFactoryPostProcessor" />-->
+    <!--<context:component-scan base-package="org.kie.spring"/>-->
+    <context:component-scan base-package="org.kie.spring.annotations"/>
+    <bean id="kiePostProcessor" class="org.kie.spring.KModuleBeanFactoryPostProcessor" />
 
     <!-- 使用drools的注解形式获取，kession，kcontainer, 只需要使用KModuleAnnotationPostProcessor即可 -->
-    <bean id="kiePostProcessor" class="org.kie.spring.annotations.KModuleAnnotationPostProcessor"/>
+    <!--<bean id="kiePostProcessor" class="org.kie.spring.annotations.KModuleAnnotationPostProcessor"/>-->
+
+    <!--  Using Spring Expressions (Spel)  -->
+   <!--
+   <kie:kmodule id="batch_commands_module">
+        <kie:kbase name="drl_kiesample" packages="#{packageRepository.packages}">
+            <kie:ksession name="ksessionForCommands" type="stateful"/>
+        </kie:kbase>
+    </kie:kmodule>
+
+    <bean id="kiePostProcessor"
+          class="org.kie.spring.KModuleBeanFactoryPostProcessor"/>
+
+    <bean id="packageRepository" class="sample.package.class.PackageRepo">
+        <property name="packages" value="drl_kiesample3">
+    </bean>
+    -->
 
 </beans>
